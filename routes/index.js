@@ -12,6 +12,10 @@ router.get('/showusers', function(req, res) {
 //  var express = require('express');
   res.render('helloworld', { title: 'show users' });
 });
+router.get('/test', function(req, res) {
+//  var express = require('express');
+  res.render('test', { title: 'show users' });
+});
 
 /* GET Userlist page. */
 router.get('/userlist', function(req, res) {
