@@ -17,30 +17,4 @@ router.get('/test', function(req, res) {
   res.render('test', { title: 'show users' });
 });
 
-
-/* GET Userlist page. */
-//router.get('/userlist', function(req, res) {
-//  var db = req.db;
-//  db.query('SELECT * FROM users', function(err, rows){
-//    res.render('userlist', {
-//      "users" : rows
-//    });
-//  });
-//});
-
-//require('../controllers/users.js')
-
-//var dbseq = require('../models')
-//
-//exports.index = function(req, res){
-//router.get('/sequelize', function(req, res) {
-//  dbseq.User.findAll({ include: [ dbseq.Task ] }).success(function(users) {
-//    res.render('sequelize', {
-//      title: 'Express',
-//      users: users
-//    })
-//  })
-//});
-
-
 module.exports = router;

@@ -41,7 +41,8 @@ module.exports.addUser = function(req, res) {
 };
 
 // USING Sequelize
-var dbseq = require('../models')
+//var dbseq = require('../models')
+var dbseq = require('../models/initsequelize.js')
 
 module.exports.testseq = function(req, res) {
   dbseq.User.findAll({ include: [ dbseq.Task ] }).success(function(users) {
