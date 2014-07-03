@@ -17,6 +17,7 @@ router.get('/test', function(req, res) {
   res.render('test', { title: 'show users' });
 });
 
+
 /* GET Userlist page. */
 //router.get('/userlist', function(req, res) {
 //  var db = req.db;

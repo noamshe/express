@@ -16,9 +16,12 @@ router.get('/userlist', function(req, res) {
 });
 
 /* GET New User page. */
-router.get('/newuser', function(req, res) {
+//router.get('/newuser', function(req, res) {
+//  res.render('newuser', { title: 'Add New User' });
+//});
+module.exports.myfunc = function(req, res) {
   res.render('newuser', { title: 'Add New User' });
-});
+}
 
 /* POST to Add User Service */
 router.post('/adduser', function(req, res) {
@@ -44,6 +47,7 @@ router.post('/adduser', function(req, res) {
   });
 });
 
+// USING Sequelize
 var dbseq = require('../models')
 
 router.get('/sequelize', function(req, res) {
@@ -56,4 +60,4 @@ router.get('/sequelize', function(req, res) {
 });
 
 
-module.exports = router;
+//module.exports = router;

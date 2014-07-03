@@ -4,8 +4,7 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
+//var routes = require('./routes/index');
 var users = require('./routes/users');
 var usersControllers = require('./controllers/users.js');
 
@@ -21,6 +20,7 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+require('./conf/routes.js')(app);
 
 var connection = require('./utils/mysqlconnector.js')
 // Make our db accessible to our router
@@ -30,8 +30,14 @@ app.use(function(req,res,next){
 });
 
 //app.use('/', routes);
-app.use('/', usersControllers);
-//app.use('/users', users);
+//app.use('/', usersControllers);
+//app.get('/newuser2', usersControllers.myfunc);
+//app.get('/newuser2',
+//  function(req, res) {
+//    res.render('newuser', { title: 'Add New User' });
+//  }
+//  );
+
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -64,35 +70,8 @@ app.use(function(err, req, res, next) {
     });
 });
 
-// **** databases connnection
-/*
-var path = require('path');
-var mysql = require('mysql');
-//  var app = express();
-
-var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : ''
-});
-
-connection.query('USE test_database');
-*/
-
-//app.set('port', 3000);
-//app.set('views', path.join(__dirname, 'views'));
-//app.set('view engine', 'jade');
-//app.use(express.static(path.join(__dirname, 'public')));
-app.get('/test', function(req, res){
-  connection.query('SELECT * FROM users', function(err, rows){
-    res.render('index', {users : rows});
-  });
-});
-//app.listen(app.get('port'));
-//console.log('Express server listening on port ' + app.get('port'));
-// **** databases connnection
-
-var db = require('./models')
-db.sequelize.sync({ force: true });
+// this initialize sequelize check it out
+//var db = require('./models')
+//db.sequelize.sync({ force: true });
 
 module.exports = app;
