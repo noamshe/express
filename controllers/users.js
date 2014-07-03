@@ -42,18 +42,14 @@ module.exports.addUser = function(req, res) {
 
 // USING Sequelize
 var dbseq = require('../models')
-var express = require('express');
-var router = express.Router();
 
-
-router.get('/sequelize', function(req, res) {
+module.exports.testseq = function(req, res) {
   dbseq.User.findAll({ include: [ dbseq.Task ] }).success(function(users) {
     res.render('sequelize', {
       title: 'Express',
       users: users
     })
   })
-});
-
+};
 
 //module.exports = router;

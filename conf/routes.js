@@ -8,5 +8,7 @@ module.exports = function(app) {
   app.get('/newuser', usersControllers.newUser);
   app.get('/userlist', usersControllers.showUserList);
   app.post('/addUser', usersControllers.addUser);
+
+  app.get('/testseq', usersControllers.testseq);
 }
 
