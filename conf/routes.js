@@ -5,6 +5,8 @@
 module.exports = function(app) {
   var usersControllers = require('../controllers/users.js');
 
-  app.get('/newuser2', usersControllers.myfunc);
+  app.get('/newuser', usersControllers.newUser);
+  app.get('/userlist', usersControllers.showUserList);
+  app.post('/addUser', usersControllers.addUser);
 }
 

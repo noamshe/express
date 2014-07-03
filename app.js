@@ -20,7 +20,6 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-require('./conf/routes.js')(app);
 
 var connection = require('./utils/mysqlconnector.js')
 // Make our db accessible to our router
@@ -28,6 +27,8 @@ app.use(function(req,res,next){
   req.db = connection;
   next();
 });
+
+require('./conf/routes.js')(app);
 
 //app.use('/', routes);
 //app.use('/', usersControllers);
