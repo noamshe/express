@@ -7,13 +7,13 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var usersControllers = require('./controllers/users.js');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
 app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -21,14 +21,17 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+var connection = require('./utils/mysqlconnector.js')
 // Make our db accessible to our router
 app.use(function(req,res,next){
   req.db = connection;
   next();
 });
 
-app.use('/', routes);
-app.use('/users', users);
+//app.use('/', routes);
+app.use('/', usersControllers);
+//app.use('/users', users);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,6 +65,7 @@ app.use(function(err, req, res, next) {
 });
 
 // **** databases connnection
+/*
 var path = require('path');
 var mysql = require('mysql');
 //  var app = express();
@@ -73,6 +77,7 @@ var connection = mysql.createConnection({
 });
 
 connection.query('USE test_database');
+*/
 
 //app.set('port', 3000);
 //app.set('views', path.join(__dirname, 'views'));
@@ -87,5 +92,7 @@ app.get('/test', function(req, res){
 //console.log('Express server listening on port ' + app.get('port'));
 // **** databases connnection
 
+var db = require('./models')
+db.sequelize.sync({ force: true });
 
 module.exports = app;

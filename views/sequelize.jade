@@ -1,0 +1,13 @@
+extends layout
+block content
+ h1= title
+ h2 Users
+ ul
+ each user in users
+   li
+     = user.username
+     ul
+       li
+       each task in user.tasks
+         li
+           = task.title
